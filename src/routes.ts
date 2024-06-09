@@ -1,20 +1,23 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { validate } from "./middleware/zod-middleware";
 import { createUserSchema } from "./schemas/userSchema";
 import { UserController } from "./controller/userController";
+import swaggerUi from "swagger-ui-express";
+import { document } from "./swagger/swagger";
 
-export const route = Router();
+export const router = Router();
 
-route.get("/", (req: Request, res: Response) => {
-  res.send("funcionou");
-});
+//swagger
+router.use("/docs", swaggerUi.serve);
+router.get("/docs", swaggerUi.setup(document));
 
-route.post("/users", validate(createUserSchema), new UserController().create);
-route.get("/users", new UserController().getAll);
-route.get("/users/:id", new UserController().getOne);
-route.put(
+//user routes
+router.post("/users", validate(createUserSchema), new UserController().create);
+router.get("/users", new UserController().getAll);
+router.get("/users/:id", new UserController().getOne);
+router.put(
   "/users/:id",
   validate(createUserSchema),
   new UserController().update
 );
-route.delete("/users/:id", new UserController().delete);
+router.delete("/users/:id", new UserController().delete);

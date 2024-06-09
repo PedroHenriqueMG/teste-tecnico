@@ -1,12 +1,12 @@
 import "express-async-errors";
 import Express from "express";
-import { route } from "./routes";
+import { router } from "./routes";
 import { errorMiddleware } from "./middleware/error-middleware";
 
 const api = Express();
 api.use(Express.json());
 
-api.use(route);
+api.use(router);
 
 api.use(errorMiddleware);
 api.listen(process.env.PORT, () => {
