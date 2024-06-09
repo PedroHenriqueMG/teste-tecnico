@@ -9,4 +9,5 @@ route.get("/", (req: Request, res: Response) => {
   res.send("funcionou");
 });
 
-route.post("/user", validate(createUserSchema), new UserController().create);
+route.post("/users", validate(createUserSchema), new UserController().create);
+route.get("/users", new UserController().list);
