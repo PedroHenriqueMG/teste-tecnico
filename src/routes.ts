@@ -10,4 +10,5 @@ route.get("/", (req: Request, res: Response) => {
 });
 
 route.post("/users", validate(createUserSchema), new UserController().create);
-route.get("/users", new UserController().list);
+route.get("/users", new UserController().getAll);
+route.delete("/users/:id", new UserController().delete);
