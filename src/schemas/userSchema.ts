@@ -12,8 +12,8 @@ export const userSchema = z.object({
     .openapi({ example: "teste@gmail.com" }),
   age: z
     .number()
-    .positive("Idade incorreta.")
-    .int("Idade incorreta.")
+    .positive("Idade inválida.")
+    .int("Idade inválida.")
     .openapi({ example: 22 }),
 });
 
