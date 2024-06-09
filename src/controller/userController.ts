@@ -12,7 +12,7 @@ export class UserController {
     const userExist = user.find((user) => user.email == email);
 
     if (userExist) {
-      throw new BadRequest("Este usuário ja existe.");
+      throw new BadRequest("Este usuário já existe.");
     }
 
     const newUser = {
