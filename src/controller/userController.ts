@@ -40,6 +40,23 @@ export class UserController {
 
     res.json(userExist);
   }
+  update(req: Request, res: Response) {
+    const { id } = req.params;
+    const { name, email, age } = req.body;
+
+    const userIndex = user.findIndex((user) => user.id == id);
+
+    if (userIndex == -1) {
+      throw new NotFound("Usuário não encontrado.");
+    }
+
+    const updateUser = { id, name, email, age };
+
+    user[userIndex] = updateUser;
+
+    res.json(updateUser);
+  }
+
   delete(req: Request, res: Response) {
     const { id } = req.params;
 

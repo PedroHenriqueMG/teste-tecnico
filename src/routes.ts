@@ -12,4 +12,9 @@ route.get("/", (req: Request, res: Response) => {
 route.post("/users", validate(createUserSchema), new UserController().create);
 route.get("/users", new UserController().getAll);
 route.get("/users/:id", new UserController().getOne);
+route.put(
+  "/users/:id",
+  validate(createUserSchema),
+  new UserController().update
+);
 route.delete("/users/:id", new UserController().delete);
