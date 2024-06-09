@@ -29,7 +29,17 @@ export class UserController {
   getAll(req: Request, res: Response) {
     res.json(user);
   }
-  getOne(req: Request, res: Response) {}
+  getOne(req: Request, res: Response) {
+    const { id } = req.params;
+
+    const userExist = user.find((user) => user.id == id);
+
+    if (!userExist) {
+      throw new NotFound("Usuário não encontrado.");
+    }
+
+    res.json(userExist);
+  }
   delete(req: Request, res: Response) {
     const { id } = req.params;
 
